@@ -3,9 +3,10 @@ import Beer from "./Beer";
 import "./BeerList.css";
 import BeerDetail from "./BeerDetail";
 
-function BeerList({beers, likeBeer, selectedBeer, selectBeer, deselectBeer}) {
+function BeerList({beers, likeBeer, selectedBeer, selectBeer, deselectBeer, favBeers}) {
     const beerElements = beers.map((beer) => {
-       return <Beer key={beer.id} beer={beer} selectBeer={selectBeer} likeBeer={likeBeer}/>
+       const isFav = favBeers.includes(beer);
+       return <Beer key={beer.id} beer={beer} selectBeer={selectBeer} likeBeer={likeBeer} isFav={isFav}/>
     }); 
     return(
         <>

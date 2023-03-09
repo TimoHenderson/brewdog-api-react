@@ -10,3 +10,20 @@
 img{ padding-top:1rem; 
     width:3rem;}
 
+.red{
+    color:red;
+    
+}
+.grey{
+    color:grey;
+}
+
+.likeRow>button{
+    background: none;
+    border:none;
+    padding:0.5rem;
+    font-size:1.5rem;
+}
+.likeRow{
+    text-align:right;
+}

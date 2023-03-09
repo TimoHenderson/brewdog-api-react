@@ -9,7 +9,7 @@ function BeersContainer(){
     const [favBeers, setFavBeers] = useState([]);
     const [beersToDisplay, setBeersToDisplay] = useState([]);
     const [selectedBeer, setSelectedBeer] = useState(null);
-    
+    const [viewingFavBeers, setViewingFavBeers] = useState(false);
     
     useEffect(()=>{
         getBeers();
@@ -18,6 +18,12 @@ function BeersContainer(){
     useEffect(()=>{
         setBeersToDisplay(allBeers);
     },[allBeers]);
+
+    useEffect(()=>{
+        if(viewingFavBeers){
+            setBeersToDisplay(favBeers);
+        }
+    },[favBeers])
 
     async function getBeers(){
         const response = await fetch("https://api.punkapi.com/v2/beers");
@@ -34,10 +40,12 @@ function BeersContainer(){
     }
 
     function viewAllBeers() {
+        setViewingFavBeers(false);
         setBeersToDisplay(allBeers);
     }
 
     function viewFavBeers() {
+        setViewingFavBeers(true);
         setBeersToDisplay(favBeers);
     }
 
@@ -59,7 +67,7 @@ function BeersContainer(){
             <p>BeersContainer</p>
             <Header />
             <BeersLinks viewAllBeers={viewAllBeers} viewFavBeers={viewFavBeers}/>
-            <BeerList beers={beersToDisplay} selectedBeer={selectedBeer} selectBeer={selectBeer} deselectBeer={deselectBeer} likeBeer={likeBeer} />
+            <BeerList beers={beersToDisplay} selectedBeer={selectedBeer} selectBeer={selectBeer} deselectBeer={deselectBeer} likeBeer={likeBeer} favBeers={favBeers} />
         </div>
     );
 }

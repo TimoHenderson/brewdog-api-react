@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function BeersLinks({viewAllBeers, viewFavBeers} ) {
     return(
         <div className="Links">
