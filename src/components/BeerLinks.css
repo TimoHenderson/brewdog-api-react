@@ -3,7 +3,7 @@
 
     display: flex;
     justify-content: center;
-    gap: 10rem;
+    gap: 8rem;
 }
 
 .Links>button {
