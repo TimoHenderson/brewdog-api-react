@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import BeersLinks from "../components/BeersLinks";
 import BeerList from "../components/BeerList";
-import Header from "../components/Header";
+
 import "./BeersContainer.css"
 
 function BeersContainer(){
@@ -12,7 +12,7 @@ function BeersContainer(){
     const [viewingFavBeers, setViewingFavBeers] = useState(false);
     
     useEffect(()=>{
-        getBeers();
+        manageGetBeers();
     },[]);
 
     useEffect(()=>{
@@ -24,11 +24,21 @@ function BeersContainer(){
             setBeersToDisplay(favBeers);
         }
     },[favBeers])
+    
+    async function manageGetBeers(){
+       const page1List = await getBeers("https://api.punkapi.com/v2/beers?page=1&per_page=60")
+       const page2List = await getBeers("https://api.punkapi.com/v2/beers?page=2&per_page=60")
+       const page3List = await getBeers("https://api.punkapi.com/v2/beers?page=3&per_page=60")
+       const page4List = await getBeers("https://api.punkapi.com/v2/beers?page=4&per_page=60")
+       const page5List = await getBeers("https://api.punkapi.com/v2/beers?page=5&per_page=60")
+       const allBeersList =page1List.concat(page2List,page3List,page4List,page5List)
+       setAllBeers(allBeersList);
+    }
 
-    async function getBeers(){
-        const response = await fetch("https://api.punkapi.com/v2/beers");
+    async function getBeers(url){
+        const response = await fetch(url);
         const allBeers = await response.json();
-        setAllBeers(allBeers);
+        return allBeers;
     }
 
     function selectBeer(beer){
@@ -64,8 +74,7 @@ function BeersContainer(){
 
     return(
         <div className="beersContainer">
-            <p>BeersContainer</p>
-            <Header />
+            <h1>BREWDOG BEERS</h1>
             <BeersLinks viewAllBeers={viewAllBeers} viewFavBeers={viewFavBeers}/>
             <BeerList beers={beersToDisplay} selectedBeer={selectedBeer} selectBeer={selectBeer} deselectBeer={deselectBeer} likeBeer={likeBeer} favBeers={favBeers} />
         </div>
