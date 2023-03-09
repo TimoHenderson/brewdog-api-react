@@ -1,0 +1,12 @@
+.beerCard{
+    background-color: bisque;
+    width:10rem;
+    padding: 1rem;
+    border-radius:1rem;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.385);
+
+}
+
+img{ padding-top:1rem; 
+    width:3rem;}
+
