@@ -1,41 +1,45 @@
 import React from "react";
 import "./BeerDetail.css";
+import LikeButton from "./LikeButton";
 
-function BeerDetail({beer, deselectBeer}) {
+function BeerDetail({ beer, deselectBeer, isFav, likeBeer }) {
 
     const uniqueMaltNames = removeDuplicates(beer.ingredients.malt);
-    const uniqueHopsNames = removeDuplicates(beer.ingredients.hops);
-    
-    const maltNodes = uniqueMaltNames.map((malt,index)=>{
-        return <li key={index}>{malt}</li>
-    })
-    const hopNodes = uniqueHopsNames.map((hop,index)=>{
-        return <li key={index}>{hop}</li>
-    })
-   
-    function removeDuplicates(myArray){
+    const uniqueHopNames = removeDuplicates(beer.ingredients.hops);
+
+    function removeDuplicates(myArray) {
         return myArray.reduce((uniqueElements, element) => {
             if (!uniqueElements.includes(element.name)) {
-            uniqueElements.push(element.name);
+                uniqueElements.push(element.name);
             }
             return uniqueElements;
-        }, []);
+        }, []).join(", ");
     }
 
-    return(
-        <div onClick={()=>deselectBeer()} className="beerDetailContainer">
-            <h2>{beer.name}</h2>
-            <h3>{beer.tagline}</h3>
-            <p>{beer.description}</p>
-            <img src={beer.image_url} alt="" />
-            <h3>{beer.abv}</h3>
-            <h4>Malts</h4>
-            <ul>{maltNodes}</ul>
-            <h4>Hops</h4>
-            <ul>{hopNodes}</ul>
-            <h4>Yeast</h4>
-            <p>{beer.ingredients.yeast}</p>
-            <p>{beer.food_pairing}</p>
+    return (
+        <div className="beerDetailContainer">
+            <LikeButton beer={beer} isFav={isFav} likeBeer={likeBeer} />
+            <div onClick={() => deselectBeer()} className="beerDetails">
+                <div>
+                    <img src={beer.image_url} alt="" />
+                </div>
+                <div>
+                    <h2>{beer.name}</h2>
+                    <h3>{beer.tagline}</h3>
+                    <h3>{beer.abv}% abv</h3>
+                    <p>{beer.description}</p>
+                    <h4>Enjoy With</h4>
+                    <p>{beer.food_pairing.join(", ")}</p>
+                    <div className="ingredients">
+                        <h4>Malts</h4>
+                        <p>{uniqueMaltNames}</p>
+                        <h4>Hops</h4>
+                        <p>{uniqueHopNames}</p>
+                        <h4>Yeast</h4>
+                        <p>{beer.ingredients.yeast}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

@@ -1,3 +1,12 @@
-.beersContainer{
-    position: relative;
+.beersContainer {
+    background-color: darkgrey;
+}
+
+.beersContainer>h1 {
+    margin: 0;
+    width: 100%;
+    padding: 1rem;
+    background-color: rgb(20, 20, 20);
+    box-sizing: border-box;
+    color: rgb(221, 221, 221);
 }

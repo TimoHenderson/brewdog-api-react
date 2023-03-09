@@ -12,12 +12,11 @@ function BeersContainer() {
 
     useEffect(() => {
         async function manageGetBeers() {
-            const page1List = await getBeers("https://api.punkapi.com/v2/beers?page=1&per_page=60")
-            const page2List = await getBeers("https://api.punkapi.com/v2/beers?page=2&per_page=60")
-            const page3List = await getBeers("https://api.punkapi.com/v2/beers?page=3&per_page=60")
-            const page4List = await getBeers("https://api.punkapi.com/v2/beers?page=4&per_page=60")
-            const page5List = await getBeers("https://api.punkapi.com/v2/beers?page=5&per_page=60")
-            const allBeersList = page1List.concat(page2List, page3List, page4List, page5List)
+            let allBeersList = [];
+            for (let i = 1; i < 6; i++) {
+                const newBeers = await getBeers(`https://api.punkapi.com/v2/beers?page=${i}&per_page=60`)
+                allBeersList = [...allBeersList, ...newBeers]
+            }
             setAllBeers(allBeersList);
         }
         manageGetBeers();

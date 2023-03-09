@@ -1,6 +1,11 @@
-.beerList{
-    display:flex;
+.beerList {
+    padding-top: 1rem;
+    display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
     gap: 1rem;
     justify-content: center;
+    max-width: 800px;
+    margin: auto;
 }

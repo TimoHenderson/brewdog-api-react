@@ -1,6 +1,41 @@
-.beerDetailContainer{
+.beerDetailContainer {
      width: 80%;
-     margin:auto;
-     background-color:rgba(0, 0, 0, 0.311);
-     
+     max-width: 800px;
+     margin: auto;
+     background-color: bisque;
+     text-align: right;
+     margin-top: 1rem;
+     border-radius: 1rem;
+}
+
+.beerDetails {
+
+     display: grid;
+     grid-template-columns: 1fr 4fr;
+
+     padding: 1rem;
+     margin-top: 0;
+     text-align: left;
+     align-items: center;
+     gap: 1rem;
+
+}
+
+.beerDetailContainer h4,
+p {
+     margin-top: 0.5rem;
+     margin-bottom: 0.5rem;
+}
+
+.beerDetailContainer img {
+     width: 10rem;
+}
+
+.ingredients {
+     margin-top: 1rem;
+     font-size: smaller;
+}
+
+.beerDetailContainer>.likeRow {
+     padding: 2rem 2rem 0 0;
 }
