@@ -33,6 +33,14 @@ function BeersContainer(){
         setSelectedBeer(null);
     }
 
+    function viewAllBeers() {
+        setBeersToDisplay(allBeers);
+    }
+
+    function viewFavBeers() {
+        setBeersToDisplay(favBeers);
+    }
+
     function likeBeer(beer){
         if(favBeers.includes(beer)){
             const newFavBeers = [...favBeers];
@@ -50,8 +58,8 @@ function BeersContainer(){
         <div className="beersContainer">
             <p>BeersContainer</p>
             <Header />
-            <BeersLinks />
-            <BeerList beers={beersToDisplay} selectedBeer={selectedBeer} selectBeer={selectBeer} deselectBeer={deselectBeer} likeBeer={likeBeer}/>
+            <BeersLinks viewAllBeers={viewAllBeers} viewFavBeers={viewFavBeers}/>
+            <BeerList beers={beersToDisplay} selectedBeer={selectedBeer} selectBeer={selectBeer} deselectBeer={deselectBeer} likeBeer={likeBeer} />
         </div>
     );
 }

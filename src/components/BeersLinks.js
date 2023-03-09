@@ -1,8 +1,11 @@
 import React from "react";
 
-function BeersLinks({changeFilter}) {
+function BeersLinks({viewAllBeers, viewFavBeers} ) {
     return(
-        <p>BeersLinks</p>
+        <div className="Links">
+            <button onClick={() => viewAllBeers()}>View All</button>
+            <button onClick={() => viewFavBeers()}>View Fav</button>
+        </div>
     );
 }
 
