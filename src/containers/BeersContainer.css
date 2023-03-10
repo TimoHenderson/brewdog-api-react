@@ -2,11 +2,17 @@
     background-color: darkgrey;
 }
 
-.beersContainer>h1 {
+header>h1 {
     margin: 0;
     width: 100%;
-    padding: 1rem;
+    padding: 1.5rem;
     background-color: rgb(20, 20, 20);
     box-sizing: border-box;
     color: rgb(221, 221, 221);
+}
+
+header {
+    position: sticky;
+    top: 0;
+    left: 0;
 }

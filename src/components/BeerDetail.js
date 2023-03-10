@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import "./BeerDetail.css";
 import LikeButton from "./LikeButton";
 
@@ -19,6 +21,9 @@ function BeerDetail({ beer, deselectBeer, isFav, likeBeer }) {
     return (
         <div className="beerDetailContainer">
             <LikeButton beer={beer} isFav={isFav} likeBeer={likeBeer} />
+            <button className="likeRow xMark" onClick={() => deselectBeer()} >
+                <FontAwesomeIcon icon={faXmark} />
+            </button>
             <div onClick={() => deselectBeer()} className="beerDetails">
                 <div>
                     <img src={beer.image_url} alt="" />

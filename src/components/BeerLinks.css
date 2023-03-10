@@ -1,6 +1,6 @@
 .Links {
-    padding-top: 1rem;
-
+    padding: 0.5rem;
+    background-color: rgb(100, 100, 100);
     display: flex;
     justify-content: center;
     gap: 8rem;
@@ -10,7 +10,7 @@
     background-color: rgb(20, 20, 20);
     color: rgb(221, 221, 221);
     font-size: 1rem;
-    padding: 0.5rem;
+    padding: 0.3rem;
     border: none;
     width: 6rem;
     border-radius: 0.5rem;

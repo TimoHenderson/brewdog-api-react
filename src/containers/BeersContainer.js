@@ -9,15 +9,15 @@ function BeersContainer() {
     const [favBeers, setFavBeers] = useState([]);
     const [selectedBeer, setSelectedBeer] = useState(null);
     const [viewingFavBeers, setViewingFavBeers] = useState(false);
+    const [prevScrollPosition, setPrevScrollPosition] = useState(0);
+    const [filters, setFilters] = useState({ below5: true, above5: true, bottle: true, keg: true });
 
     useEffect(() => {
         async function manageGetBeers() {
-            let allBeersList = [];
             for (let i = 1; i < 6; i++) {
                 const newBeers = await getBeers(`https://api.punkapi.com/v2/beers?page=${i}&per_page=60`)
-                allBeersList = [...allBeersList, ...newBeers]
+                setAllBeers((allBeers) => [...allBeers, ...newBeers]);
             }
-            setAllBeers(allBeersList);
         }
         manageGetBeers();
     }, []);
@@ -28,20 +28,42 @@ function BeersContainer() {
         return allBeers;
     }
 
+    function scrollToPrev() {
+        window.scrollTo({
+            top: prevScrollPosition,
+            left: 0,
+            behavior: 'auto'
+        });
+    }
+
+    function scrollToTop() {
+        setPrevScrollPosition(window.scrollY);
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'auto'
+        });
+    }
+
     function selectBeer(beer) {
         setSelectedBeer(beer);
+        scrollToTop();
     }
 
     function deselectBeer() {
         setSelectedBeer(null);
+        scrollToPrev();
     }
 
     function viewAllBeers() {
         setViewingFavBeers(false);
+        deselectBeer();
     }
 
     function viewFavBeers() {
         setViewingFavBeers(true);
+        deselectBeer();
+        scrollToTop();
     }
 
     function likeBeer(beer) {
@@ -56,10 +78,16 @@ function BeersContainer() {
         }
     }
 
+    function getFilteredBeers() {
+
+    }
+
     return (
         <div className="beersContainer">
-            <h1>BREWDOG BEERS</h1>
-            <BeersLinks viewAllBeers={viewAllBeers} viewFavBeers={viewFavBeers} />
+            <header>
+                <h1>BREWDOG BEERS</h1>
+                <BeersLinks viewAllBeers={viewAllBeers} viewFavBeers={viewFavBeers} />
+            </header>
             <BeerList beers={viewingFavBeers ? favBeers : allBeers} selectedBeer={selectedBeer} selectBeer={selectBeer} deselectBeer={deselectBeer} likeBeer={likeBeer} favBeers={favBeers} />
         </div>
     );
