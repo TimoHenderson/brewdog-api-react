@@ -23,4 +23,9 @@
 .Links>button.filterOn {
     background-color: lightgrey;
     color: rgb(27, 27, 27);
+    border: black 2px solid;
+}
+
+.Links>button.filterOff {
+    color: rgb(90, 89, 89);
 }
