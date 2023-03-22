@@ -88,30 +88,13 @@ function BeersContainer() {
         setFilters(newFilters);
     }
 
-    function getFilteredBeers() {
-        let beers = viewingFavBeers ? [...favBeers] : [...allBeers];
-        if (!filters.keg) {
-            beers = beers.filter((beer) => beer.image_url !== "https://images.punkapi.com/v2/keg.png")
-        }
-        if (!filters.bottle) {
-            beers = beers.filter((beer) => beer.image_url === "https://images.punkapi.com/v2/keg.png")
-        }
-        if (!filters.above5) {
-            beers = beers.filter((beer) => beer.abv < 5);
-        }
-        if (!filters.below5) {
-            beers = beers.filter((beer) => beer.abv >= 5);
-        }
-        return beers;
-    }
-
     return (
         <div className="beersContainer">
             <header>
                 <h1>BREWDOG BEERS</h1>
                 <BeersLinks viewAllBeers={viewAllBeers} viewFavBeers={viewFavBeers} toggleFilter={toggleFilter} filters={filters} viewingFavBeers={viewingFavBeers} />
             </header>
-            <BeerList beers={getFilteredBeers()} selectedBeer={selectedBeer} selectBeer={selectBeer} deselectBeer={deselectBeer} likeBeer={likeBeer} favBeers={favBeers} />
+            <BeerList beers={viewingFavBeers ? favBeers : allBeers} filters={filters} selectedBeer={selectedBeer} selectBeer={selectBeer} deselectBeer={deselectBeer} likeBeer={likeBeer} favBeers={favBeers} />
         </div>
     );
 }
