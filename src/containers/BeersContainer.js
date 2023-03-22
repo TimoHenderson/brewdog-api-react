@@ -10,7 +10,7 @@ function BeersContainer() {
     const [selectedBeer, setSelectedBeer] = useState(null);
     const [viewingFavBeers, setViewingFavBeers] = useState(false);
     const [prevScrollPosition, setPrevScrollPosition] = useState(0);
-    const [filters, setFilters] = useState({ below5: true, above5: false, bottle: true, keg: true });
+    const [filters, setFilters] = useState({ below5: true, above5: true, bottle: true, keg: true });
     const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
