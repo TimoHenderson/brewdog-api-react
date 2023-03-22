@@ -3,13 +3,14 @@ import Beer from "./Beer";
 import "./BeerList.css";
 import BeerDetail from "./BeerDetail";
 
-function BeerList({ beers, filters, likeBeer, selectedBeer, selectBeer, deselectBeer, favBeers }) {
+function BeerList({ beers, filters, likeBeer, selectedBeer, selectBeer, deselectBeer, favBeers, searchText }) {
 
     const filteredBeers = beers.filter((beer) => {
         if (!filters.keg && beer.image_url === "https://images.punkapi.com/v2/keg.png") return false;
         if (!filters.bottle && beer.image_url !== "https://images.punkapi.com/v2/keg.png") return false;
         if (!filters.above5 && beer.abv >= 5) return false;
         if (!filters.below5 && beer.abv < 5) return false;
+        if (!beer.name.toLowerCase().includes(searchText.toLowerCase())) return false;
         return true;
     });
 

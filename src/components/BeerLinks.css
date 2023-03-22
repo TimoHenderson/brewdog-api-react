@@ -29,3 +29,7 @@
 .Links>button.filterOff {
     color: rgb(90, 89, 89);
 }
+
+.Links input {
+    padding: 0.3rem;
+}

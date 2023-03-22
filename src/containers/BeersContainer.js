@@ -11,6 +11,7 @@ function BeersContainer() {
     const [viewingFavBeers, setViewingFavBeers] = useState(false);
     const [prevScrollPosition, setPrevScrollPosition] = useState(0);
     const [filters, setFilters] = useState({ below5: true, above5: false, bottle: true, keg: true });
+    const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
         async function manageGetBeers() {
@@ -28,6 +29,10 @@ function BeersContainer() {
         const response = await fetch(url);
         const allBeers = await response.json();
         return allBeers;
+    }
+
+    function updateSearchText(e) {
+        setSearchText(e.target.value);
     }
 
     function scrollToPrev() {
@@ -92,9 +97,9 @@ function BeersContainer() {
         <div className="beersContainer">
             <header>
                 <h1>BREWDOG BEERS</h1>
-                <BeersLinks viewAllBeers={viewAllBeers} viewFavBeers={viewFavBeers} toggleFilter={toggleFilter} filters={filters} viewingFavBeers={viewingFavBeers} />
+                <BeersLinks viewAllBeers={viewAllBeers} viewFavBeers={viewFavBeers} toggleFilter={toggleFilter} filters={filters} viewingFavBeers={viewingFavBeers} updateSearchText={updateSearchText} />
             </header>
-            <BeerList beers={viewingFavBeers ? favBeers : allBeers} filters={filters} selectedBeer={selectedBeer} selectBeer={selectBeer} deselectBeer={deselectBeer} likeBeer={likeBeer} favBeers={favBeers} />
+            <BeerList beers={viewingFavBeers ? favBeers : allBeers} filters={filters} searchText={searchText} selectedBeer={selectedBeer} selectBeer={selectBeer} deselectBeer={deselectBeer} likeBeer={likeBeer} favBeers={favBeers} />
         </div>
     );
 }
